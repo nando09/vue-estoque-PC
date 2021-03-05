@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Topo></Topo>
+    <Lateral></Lateral>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Lateral from '@/components/Menus/Lateral.vue';
+import Topo from '@/components/Menus/Topo.vue';
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    Lateral,
+    Topo
   },
   created() {
     let usuarioAux = sessionStorage.getItem('usuario')

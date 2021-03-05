@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     onSubmit(evt) {
+      let vm = this;
       evt.preventDefault();
 
       let data = {
@@ -51,45 +52,93 @@ export default {
       };
 
       axios.post("http://backend.pitutinhos.com.br/api/login",data).then(function(response){
-          console.log(response);
+          if (response.data.token) {
+            sessionStorage.setItem('usuario', JSON.stringify(response.data.token))
+            vm.$router.push('/');
+            vm.toast('Logado com sucesso!', 'success');
+          }else{
+            vm.toast('Tente novamente!', 'error');
+          }
       }).catch(function (error) {
-          console.log(error);
+        console.log(error);
+        vm.toast('Servidor fora, tente novamente mais tarde!', 'info');
       });
+    },
+
+    toast(title, icon) {
+      const Toast = this.$swal.mixin({
+        toast: true,
+        position: 'top-end',
+        // position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 6000,
+        // background: '#c17d01',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', this.$swal.stopTimer)
+          toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+        }
+      });
+
+      // Toast.fire({
+      //   icon: 'success',
+      //   title: 'Sucesso Sucesso Sucesso Sucesso Sucesso !'
+      // });
+
+      Toast.fire({
+        icon: icon,
+        title: title
+      });
+
+      // Toast.fire({
+      //   icon: 'warning',
+      //   title: 'Atenção Atenção Atenção Atenção Atenção Atenção !'
+      // });
+
+      // Toast.fire({
+      //   icon: 'info',
+      //   title: 'Informação!'
+      // });
+
+      // Toast.fire({
+      //   icon: 'question',
+      //   title: 'Questão!'
+      // });
     },
   }
 };
 </script>
 <style type="text/css">
-.buttons{
-  margin-top: 20px;
-}
+  .buttons{
+    margin-top: 20px;
+  }
 
-.form-login{
-  top: 25vh;
-  background: white;
-  box-shadow: 0 0 #f1f1f1;
-  border: 5px solid #c17d01;
-  border-radius: 5px;
-  padding: 30px;  
-}
+  .form-login{
+    top: 25vh;
+    background: white;
+    box-shadow: 0 0 #f1f1f1;
+    border: 5px solid #c17d01;
+    border-radius: 5px;
+    padding: 30px;  
+  }
 
-.body-login{
-  height: 100vh;
-  background: rgba(255, 193, 7, 0.3);
-}
+  .body-login{
+    height: 100vh;
+    background: rgba(255, 193, 7, 0.3);
+  }
 
-.title-login{
-  font-weight: bolder;
-  color: orange;
-  margin-top: 6%;
-}
+  .title-login{
+    font-weight: bolder;
+    color: orange;
+    margin-top: 6%;
+  }
 
-.title-login span{
-  color: #c17d01;
-}
+  .title-login span{
+    color: #c17d01;
+  }
 
-.input-group-text{
-  background: #ffecb4 !important;
-  color: #c17d01;
-}
+  .input-group-text{
+    background: #ffecb4 !important;
+    color: #c17d01;
+  }
 </style>
