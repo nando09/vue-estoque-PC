@@ -10,7 +10,7 @@
 // @ is an alias to /src
 import Lateral from '@/components/Menus/Lateral.vue';
 import Topo from '@/components/Menus/Topo.vue';
-import Index from '@/components/Home/Index.vue';
+import Index from '@/components/Configuracao/Index.vue';
 
 export default {
   name: "Home",
