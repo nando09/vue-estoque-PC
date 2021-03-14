@@ -54,7 +54,7 @@ export default {
       axios.post("http://backend.pitutinhos.com.br/api/login",data).then(function(response){
           if (response.data.token) {
             sessionStorage.setItem('usuario', JSON.stringify(response.data.token))
-            vm.$router.push('/');
+            vm.$router.push('/home');
             vm.toast('Logado com sucesso!', 'success');
           }else{
             vm.toast('Tente novamente!', 'error');

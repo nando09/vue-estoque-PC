@@ -2,10 +2,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
+import EmptyViewRouter from "@/components/EmptyViewRouter";
 
 import Produtos from "../views/Produtos/Index.vue";
 import Funcionarios from "../views/Funcionarios/Index.vue";
 import Configuracao from "../views/Configuracao/Index.vue";
+// ProdutoEntrada
+// ProdutoSaida
 
 Vue.use(VueRouter);
 
@@ -18,7 +21,21 @@ const routes = [
   {
     path: "/produtos",
     name: "Produtos",
-    component: Produtos
+    component: EmptyViewRouter,
+    children: [
+        {
+          path: "/",
+          component: Produtos
+        },
+        {
+          path: "entrada",
+          component: Produtos
+        },
+        {
+          path: "saida",
+          component: Produtos
+        }
+    ]
   },
   {
     path: "/funcionarios",
@@ -31,7 +48,7 @@ const routes = [
     component: Configuracao
   },
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: Home
   },

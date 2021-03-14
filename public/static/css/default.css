@@ -22,7 +22,7 @@
   background: #86aaaf; 
 }
 
-li .router-link-exact-active i, li .router-link-exact-active{
+li .router-link-active, li .router-link-active i, li .router-link-exact-active i, li .router-link-exact-active{
 	background: #c17d01;
 	color: white;
 }
@@ -37,3 +37,16 @@ li .router-link-exact-active i, li .router-link-exact-active{
 	background: #eee;
 	overflow: auto;
 }
+
+/*router-link-exact-active router-link-active*/
+.conteudo li .router-link-active, .conteudo li .router-link-active i{
+	background: transparent;
+	color: #c17d01;
+}
+
+.conteudo li .router-link-exact-active i, .conteudo li .router-link-exact-active{
+	background: #c17d01;
+	color: white;
+}
+
+
