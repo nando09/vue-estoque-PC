@@ -6,10 +6,10 @@
 
 <script>
 // @ is an alias to /src
-import Menu from '@/components/Configuracao/Menu/Menu.vue';
+import Menu from '@/components/Produtos/Menu/Menu.vue';
 
 export default {
-  name: "Index",
+  name: "Saida",
   components: {
     Menu
   },

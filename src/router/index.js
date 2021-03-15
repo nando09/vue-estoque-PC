@@ -4,7 +4,11 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import EmptyViewRouter from "@/components/EmptyViewRouter";
 
+// Produtos
 import Produtos from "../views/Produtos/Index.vue";
+// import Produtos from "../views/Produtos/Index.vue";
+
+
 import Funcionarios from "../views/Funcionarios/Index.vue";
 import Configuracao from "../views/Configuracao/Index.vue";
 // ProdutoEntrada

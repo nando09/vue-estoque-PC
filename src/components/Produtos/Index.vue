@@ -1,25 +1,18 @@
 <template>
   <div class="conteudo">
-    <b-nav tabs align="center">
-      <b-nav-item to="/produtos">
-        Produtos
-      </b-nav-item>
-      <b-nav-item to="/produtos/saida">
-        Saída
-      </b-nav-item>
-      <b-nav-item to="/produtos/entrada">
-        Entrada
-      </b-nav-item>
-      <!-- <b-nav-item disabled>Disabled</b-nav-item> -->
-    </b-nav>
+    <Menu></Menu>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Menu from '@/components/Produtos/Menu/Menu.vue';
 
 export default {
   name: "Index",
+  components: {
+    Menu
+  },
   props: {
     msg: String
   }
