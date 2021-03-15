@@ -1,6 +1,17 @@
 <template>
   <div class="conteudo">
-    <h1>Funcionarios</h1>
+    <b-nav tabs align="center">
+      <b-nav-item to="/funcionarios">
+        Produtos
+      </b-nav-item>
+      <b-nav-item to="/funcionarios/saida">
+        Saída
+      </b-nav-item>
+      <b-nav-item to="/funcionarios/entrada">
+        Entrada
+      </b-nav-item>
+      <!-- <b-nav-item disabled>Disabled</b-nav-item> -->
+    </b-nav>
   </div>
 </template>
 

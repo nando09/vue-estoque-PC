@@ -11,7 +11,7 @@
         <router-link class="grey-text text-lighten-3" to="/funcionarios"><b-icon font-scale="1.4" icon="person-lines-fill"></b-icon></router-link>
       </li>
       <li>
-        <router-link class="grey-text text-lighten-3" to="/configuracao"><b-icon font-scale="1.4" icon="pencil-square"></b-icon></router-link>
+        <router-link class="grey-text text-lighten-3" to="/configuracao"><b-icon font-scale="1.4" icon="gear"></b-icon></router-link>
       </li>
     </ul>
   </div>

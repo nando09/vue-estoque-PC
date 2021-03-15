@@ -40,12 +40,40 @@ const routes = [
   {
     path: "/funcionarios",
     name: "Funcionarios",
-    component: Funcionarios
+    component: EmptyViewRouter,
+    children: [
+        {
+          path: "/",
+          component: Funcionarios
+        },
+        {
+          path: "entrada",
+          component: Funcionarios
+        },
+        {
+          path: "saida",
+          component: Funcionarios
+        }
+    ]
   },
   {
     path: "/configuracao",
     name: "Configuracao",
-    component: Configuracao
+    component: EmptyViewRouter,
+    children: [
+        {
+          path: "/",
+          component: Configuracao
+        },
+        {
+          path: "entrada",
+          component: Configuracao
+        },
+        {
+          path: "saida",
+          component: Configuracao
+        }
+    ]
   },
   {
     path: "/home",
