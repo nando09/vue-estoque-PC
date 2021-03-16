@@ -2,7 +2,7 @@
   <div class="home">
     <Topo></Topo>
     <Lateral></Lateral>
-    <Index></Index>
+    <SaidaProduto></SaidaProduto>
   </div>
 </template>
 
@@ -10,14 +10,14 @@
 // @ is an alias to /src
 import Lateral from '@/components/Menus/Lateral.vue';
 import Topo from '@/components/Menus/Topo.vue';
-import Index from '@/components/Produtos/Index.vue';
+import SaidaProduto from '@/components/Produtos/Saida.vue';
 
 export default {
   name: "Saida",
   components: {
     Lateral,
     Topo,
-    Index
+    SaidaProduto
   },
   created() {
     let usuarioAux = sessionStorage.getItem('usuario')
@@ -26,8 +26,6 @@ export default {
     } else {
       this.$router.push('/login');
     }
-
-    console.log(this.usuario);
   },
 };
 </script>

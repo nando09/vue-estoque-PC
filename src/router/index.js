@@ -6,7 +6,8 @@ import EmptyViewRouter from "@/components/EmptyViewRouter";
 
 // Produtos
 import Produtos from "../views/Produtos/Index.vue";
-// import Produtos from "../views/Produtos/Index.vue";
+import EntradaProdutos from "../views/Produtos/Entrada.vue";
+import SaidaProdutos from "../views/Produtos/Saida.vue";
 
 
 import Funcionarios from "../views/Funcionarios/Index.vue";
@@ -33,11 +34,11 @@ const routes = [
         },
         {
           path: "entrada",
-          component: Produtos
+          component: EntradaProdutos
         },
         {
           path: "saida",
-          component: Produtos
+          component: SaidaProdutos
         }
     ]
   },

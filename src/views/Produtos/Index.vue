@@ -26,8 +26,6 @@ export default {
     } else {
       this.$router.push('/login');
     }
-
-    console.log(this.usuario);
   },
 };
 </script>

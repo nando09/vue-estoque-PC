@@ -1,6 +1,7 @@
 <template>
   <div class="conteudo">
     <Menu></Menu>
+    <h1>Produtos2</h1>
   </div>
 </template>
 

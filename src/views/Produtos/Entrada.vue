@@ -2,7 +2,7 @@
   <div class="home">
     <Topo></Topo>
     <Lateral></Lateral>
-    <Index></Index>
+    <EntradaProduto></EntradaProduto>
   </div>
 </template>
 
@@ -10,14 +10,14 @@
 // @ is an alias to /src
 import Lateral from '@/components/Menus/Lateral.vue';
 import Topo from '@/components/Menus/Topo.vue';
-import Index from '@/components/Produtos/Index.vue';
+import EntradaProduto from '@/components/Produtos/Entrada.vue';
 
 export default {
-  name: "Saida",
+  name: "Entrada",
   components: {
     Lateral,
     Topo,
-    Index
+    EntradaProduto
   },
   created() {
     let usuarioAux = sessionStorage.getItem('usuario')
@@ -26,8 +26,6 @@ export default {
     } else {
       this.$router.push('/login');
     }
-
-    console.log(this.usuario);
   },
 };
 </script>
