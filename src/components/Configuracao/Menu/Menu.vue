@@ -1,13 +1,13 @@
 <template>
-  <b-nav tabs align="center">
+  <b-nav tabs>
     <b-nav-item to="/configuracao">
-      Produtos
+      Configuração
     </b-nav-item>
-    <b-nav-item to="/configuracao/saida">
-      Saída
+    <b-nav-item to="/configuracao/usuarios">
+      Usuários
     </b-nav-item>
-    <b-nav-item to="/configuracao/entrada">
-      Entrada
+    <b-nav-item to="/configuracao/perfil">
+      Perfil
     </b-nav-item>
     <!-- <b-nav-item disabled>Disabled</b-nav-item> -->
   </b-nav>

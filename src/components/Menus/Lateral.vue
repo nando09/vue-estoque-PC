@@ -32,7 +32,7 @@ export default {
     /*background: #c17d01;*/
     position: fixed;
     float: left;
-    z-index: 9998;
+    z-index: 1;
     width: 4%;
     max-width: 4%;
     height: 93vh;

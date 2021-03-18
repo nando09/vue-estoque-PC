@@ -49,4 +49,6 @@ li .router-link-active, li .router-link-active i, li .router-link-exact-active i
 	color: white;
 }
 
-
+.cadastrar{
+	width: 100%;
+}

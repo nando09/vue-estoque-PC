@@ -11,15 +11,16 @@
         </b-col>
       </b-row>
     </b-container>
+    Perfil
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Menu from '@/components/Produtos/Menu/Menu.vue';
+import Menu from '@/components/Configuracao/Menu/Menu.vue';
 
 export default {
-  name: "Entrada",
+  name: "Perfil",
   components: {
     Menu
   },

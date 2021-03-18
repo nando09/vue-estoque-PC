@@ -11,9 +11,12 @@ import SaidaProdutos from "../views/Produtos/Saida.vue";
 
 
 import Funcionarios from "../views/Funcionarios/Index.vue";
+
+
+// Produtos
 import Configuracao from "../views/Configuracao/Index.vue";
-// ProdutoEntrada
-// ProdutoSaida
+import UsuarioConfiguracao from "../views/Configuracao/Usuario.vue";
+import PerfilConfiguracao from "../views/Configuracao/Perfil.vue";
 
 Vue.use(VueRouter);
 
@@ -71,12 +74,12 @@ const routes = [
           component: Configuracao
         },
         {
-          path: "entrada",
-          component: Configuracao
+          path: "usuarios",
+          component: UsuarioConfiguracao
         },
         {
-          path: "saida",
-          component: Configuracao
+          path: "perfil",
+          component: PerfilConfiguracao
         }
     ]
   },

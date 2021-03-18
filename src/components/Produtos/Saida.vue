@@ -1,7 +1,16 @@
 <template>
   <div class="conteudo">
-    <Menu></Menu>
-    <h1>Saida</h1>
+    <b-modal hide-footer id="my-modal">Hello From My Modal!</b-modal>
+    <b-container class="bv-example-row">
+      <b-row class="text-center">
+        <b-col cols="10">
+          <Menu></Menu>
+        </b-col>
+        <b-col>
+          <b-button class='cadastrar' variant="primary" v-b-modal="'my-modal'">Novo</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

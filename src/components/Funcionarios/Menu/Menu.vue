@@ -1,5 +1,5 @@
 <template>
-  <b-nav tabs align="center">
+  <b-nav tabs>
     <b-nav-item to="/funcionarios">
       Produtos
     </b-nav-item>
