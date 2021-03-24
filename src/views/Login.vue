@@ -85,6 +85,11 @@ export default {
       //   title: 'Sucesso Sucesso Sucesso Sucesso Sucesso !'
       // });
 
+      // Toast.fire({
+      //   icon: 'error',
+      //   title: 'Sucesso Sucesso Sucesso Sucesso Sucesso !'
+      // });
+
       Toast.fire({
         icon: icon,
         title: title
