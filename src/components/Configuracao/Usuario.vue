@@ -1,6 +1,6 @@
 <template>
   <div class="conteudo">
-    <b-modal size="xl" hide-footer id="my-modal" title="Cadastrar usuario">
+    <b-modal ref="cadastrar-produto" size="xl" hide-footer id="cadastrar-produto" title="Cadastrar usuario">
       <b-form @submit="onSubmit" @reset="onReset">
         <b-row>
           <b-col>
@@ -110,11 +110,25 @@
           <Menu></Menu>
         </b-col>
         <b-col>
-          <b-button class='cadastrar' variant="primary" v-b-modal="'my-modal'">Novo</b-button>
+          <b-button class='cadastrar' variant="primary" v-b-modal="'cadastrar-produto'" ref="btnShow">Novo</b-button>
         </b-col>
       </b-row>
     </b-container>
-    Usuario
+
+    <b-container>
+      <b-table striped hover :items="items" :fields="fields">
+        <template #cell(id)="data">
+          <b-row class="text-center">
+            <b-col>
+              <b-icon scale="1.5" class="table-acao" @click="getUsuario(data.value)" icon="pencil-square" variant="primary"></b-icon>
+            </b-col>
+            <b-col>
+              <b-icon scale="1.5" class="table-acao" @click="deletaUsuario(data.value)" icon="x-circle" variant="danger"></b-icon>
+            </b-col>
+          </b-row>
+        </template>
+      </b-table>
+    </b-container>
   </div>
 </template>
 
@@ -140,10 +154,40 @@ export default {
       email: '',
       profile_id: null,
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      fields: [
+        { label: 'Nome', key: 'name', sortable: true },
+        { label: 'Usuario', key: 'username', sortable: true },
+        { label: 'Perfil', key: 'profile_id', sortable: true },
+        { label: 'E-mail', key: 'email', sortable: true },
+        { label: 'Ação', key: 'id'},
+      ],
+      items: []
     }
   },
+  mounted() {
+    this.getUsuarios();
+  },
   methods: {
+    getUsuarios(){
+      let vm = this;
+
+      let headers = {
+        headers: {
+          'Authorization': this.token,
+          'Content-Type': 'application/json'
+        }
+      }
+
+      axios.get("http://backend.pitutinhos.com.br/api/user", headers).then(function(response){
+        // console.log(response);
+        vm.items = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        vm.toast('Servidor fora, tente novamente mais tarde!', 'info');
+      });
+    },
+
     onSubmit(event) {
       event.preventDefault();
       let vm = this;
@@ -166,19 +210,28 @@ export default {
 
       axios.post("http://backend.pitutinhos.com.br/api/user",data, headers).then(function(response){
         if (response.data.id) {
-          this.$root.$emit('bv::toggle::modal', 'cadastrar-produto', '#btnToggle');
-          vm.toast('Servidor fora, tente novamente mais tarde!', 'success');
+          vm.$root.$emit('bv::toggle::modal', 'cadastrar-produto', '#btnShow');
+          vm.toast('Cadastrado com sucesso ('+ response.data.name +')!', 'success');
         }else{
-          console.log(response.data);
           if (response.data.name) {
             vm.toast(response.data.name[0], "warning");
+          }else if(response.data.username){
+            vm.toast(response.data.username[0], "warning");
+          }else if(response.data.profile_id){
+            vm.toast(response.data.profile_id[0], "warning");
+          }else if(response.data.email){
+            vm.toast(response.data.email[0], "warning");
+          }else if(response.data.password){
+            vm.toast(response.data.password[0], "warning");
           }
+
         }
       }).catch(function (error) {
         console.log(error);
         vm.toast('Servidor fora, tente novamente mais tarde!', 'info');
       });
     },
+
     onReset(event) {
       event.preventDefault();
 
@@ -188,8 +241,69 @@ export default {
       this.profile_id             = null;
       this.password               = '';
       this.password_confirmation  = '';
-      this.$root.$emit('bv::toggle::modal', 'cadastrar-produto', '#btnToggle');
+
+      // this.$refs['cadastrar-produto'].hide();
+      this.$root.$emit('bv::toggle::modal', 'cadastrar-produto', '#btnShow');
     },
+
+    getUsuario(id){
+      let vm = this;
+
+      let headers = {
+        headers: {
+          'Authorization': this.token,
+          'Content-Type': 'application/json'
+        }
+      }
+
+      axios.get("http://backend.pitutinhos.com.br/api/user/" + id, headers).then(function(response){
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+        vm.toast('Servidor fora, tente novamente mais tarde!', 'info');
+      });
+    },
+
+    deletaUsuario(id){
+      const swalWithBootstrapButtons = this.$swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'Realmente vai deletar?',
+        text: "Atenção quando for deletar!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, pode deletar!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deletado!',
+            'Com sucesso.',
+            'success'
+          )
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === this.$swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          )
+        }
+      })
+
+      console.log(id);
+      console.log('Delete');
+    },
+
     toast(title, icon) {
       const Toast = this.$swal.mixin({
         toast: true,
@@ -207,10 +321,24 @@ export default {
         icon: icon,
         title: title
       });
-    },
-
+    }
   }
 };
 </script>
 <style type="text/css">
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
 </style>

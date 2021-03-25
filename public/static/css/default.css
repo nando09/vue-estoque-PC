@@ -56,3 +56,7 @@ li .router-link-active, li .router-link-active i, li .router-link-exact-active i
 .button-modal{
 	width: 100%;
 }
+
+.table-acao{
+	cursor: pointer;
+}
